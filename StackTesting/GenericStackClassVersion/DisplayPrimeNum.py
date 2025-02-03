@@ -1,10 +1,7 @@
-#Make sure to use GenericStack class for this version of the program
+#This version of the DisplayPrimeNum program uses a predefined GenericStack class instead of using the built in stack functionality of python
 
-#Create a loop that only generates prime numbers
-
-#Store each prime number in a stack
-
-#Print prime numbers from stack in a clean and formatted way, also make sure they are printed in descending order
+#Import GenericStack class for use in this program
+from GenericStack import GenericStack
 
 def main():
     #How many prime numbers need to be calculated
@@ -13,66 +10,74 @@ def main():
     #Create a stack of the calculated prime numbers
     primeStack = primeCalculator(amountPrimeNumbers)
     
-    #Print the stack of prime numbers
+    #Print a formatted version of the stack of prime numbers
     primePrinter(primeStack)
     
-#Ask user how many prime numbers they would like to calculate. Includes invalid input checker.
+#Ask user how many prime numbers they would like to calculate. Includes invalid input checker, and singular prime number grammar check
 def userInput():
+    #Valid input checker
     amountPrimeNumbers = input("How many prime numbers do you want me to calculate? ")
     while not amountPrimeNumbers.isdigit():
         amountPrimeNumbers = input("I'm sorry that wasn't a valid integer number. How many prime numbers do you want me to calculate? ") 
-    print("The first", amountPrimeNumbers, "prime numbers are: \n")
+    
+    #Singular prime number checker
+    if int(amountPrimeNumbers) == 1:
+        print("The first prime number is: ")
+    else: 
+        print("The first", amountPrimeNumbers, "prime numbers are: ", end = "")
+    
     return int(amountPrimeNumbers)
-    
+
+#Go through every possible divisor of each number to find the amount of prime numbers the user has asked for
 def primeCalculator(amountPrimeNumbers):
+    #Set initial values for variables to be iterated on later
+    primeStack = GenericStack()
+    currentPrimeCheck = 2
+    divisibleBy = currentPrimeCheck - 1
     
-    """lowEndPrime = 1
-    
-    #For (amountPrimeNumbers) iterate from the last prime number to the next prime number
-    for i in range(1, amountPrimeNumbers + 1): #Starts at 1, ends before amoountPrimeNumbers + 1
-        #print(i)
-        
-        #print(lowEndPrime)
-        
-        if lowEndPrime % lowEndPrime - 1 == 0:
-            print(lowEndPrime, "not prime?")"""
-            
-    #Clunky code that works but needs to be completly optimized
-    lowEndPrime = 2
-    divisibleBy = lowEndPrime - 1
-    
-    while amountPrimeNumbers != 1:
-    
-        #Base case
-        """if lowEndPrime <= 1:
-            print(i, "Not a prime number")"""
-        #print(divisibleBy)
-        
-        while lowEndPrime % divisibleBy != 0:
-            #print(lowEndPrime, "%", divisibleBy, "==", lowEndPrime % divisibleBy, "Is a prime instance")
-            
+    #Find the user chosen amount of prime numbers
+    while amountPrimeNumbers != 0:
+        #While the current number being checked is not divisible by any number less than it
+        while currentPrimeCheck % divisibleBy != 0:
             divisibleBy -= 1
         
-        if divisibleBy > 1:
-            print(lowEndPrime, "is not a prime")
-        else:
-            print(lowEndPrime, "is a prime")
-        lowEndPrime += 1
-        amountPrimeNumbers -= 1
-        divisibleBy = lowEndPrime - 1
+        #If current number being checked made it through every number except itself divided by 1
+        if divisibleBy == 1:
+            primeStack.push(currentPrimeCheck)
+            amountPrimeNumbers -= 1
+        
+        #Update the current number being checked and the divisor being used to start chcking that number
+        currentPrimeCheck += 1
+        divisibleBy = currentPrimeCheck - 1
     
-    #iterate down through each number and see if it is divisible with any number lower than it that is greater than 1
+    return primeStack
     
-    #add number to stack if it doesn't have a divisor (Excluding amountPrimeNumbers and 1)
-    
-    #Subtract 1 from amountPrimeNumbers and repeat
-    
-    #return primeStack
-    
+#Add comments explaining this method
 def primePrinter(primeStack):
-    #While primeStack isn't empty
+    #The least amount of spacing needed will be equivalent to the amount of digits of the longest number + 1
+    leastSpacing = len(str(primeStack.peek())) + 1
+    printCounter = 0
     
-    #print each value of prime stack with spaces inbetween and make sure to create new rows as needed
+    #While the stack is not empty
+    while primeStack.get_size() != 0:
+        #Take the current prime number off the stack and check its length
+        currentPrime = primeStack.pop()
+        currentPrimeLength = len(str(currentPrime))
+        
+        #If the amount of printed prime numebrs is a divisible of 10 then make a new row
+        if printCounter % 10 == 0:
+                print("\n")
+        
+        #While the spacing is not the same as the spacing on the largest length number add spaces
+        while currentPrimeLength != leastSpacing:
+            print(end = " ")
+            currentPrimeLength += 1
+            
+        #Print the currentPrime number without adding a new line and update teh printed numbers counted
+        print(f"{currentPrime}", end = "")
+        printCounter += 1
+    #For readaility
+    print()
     print()
     
 #If there is a main method, run it
