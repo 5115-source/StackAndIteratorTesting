@@ -2,8 +2,8 @@ This repo is a collection of test programs used to get better at creating iterat
 
 The repo is organized into different file directories.
 
- - The Iterator testing folder has a program named FibonacciNum.py that wil call on the class FibonacciIterator.py to iterate trhough different Fibonacci numbers up to a user defined max value.
+ - The [IteratorTesting](https://github.com/5115-source/StackAndIteratorTesting/tree/main/IteratorTesting) folder has a program named [FibonacciNum](https://github.com/5115-source/StackAndIteratorTesting/blob/main/IteratorTesting/FibanacciNum.py) that wil call on the class [FibonacciIterator](https://github.com/5115-source/StackAndIteratorTesting/blob/main/IteratorTesting/FibonacciIterator.py) to iterate trhough different Fibonacci numbers up to a user defined max value.
 
  - The StackTesting Folder contains two sub folders.
-    - GenericStackClassVersion contains the DisplayPrimeNum.py program which relies on the GenericStack.py class to function. This class was originally written in java and was translated to python by ChatGPT.
-    - PythonStackVersion contains the DisplayPrimeNumbers.py program which uses the built in stack functionality of python.
+    - [GenericStackClassVersion](https://github.com/5115-source/StackAndIteratorTesting/tree/main/StackTesting/GenericStackClassVersion) contains the [DisplayPrimeNum](https://github.com/5115-source/StackAndIteratorTesting/blob/main/StackTesting/GenericStackClassVersion/DisplayPrimeNum.py) program which relies on the [GenericStack](https://github.com/5115-source/StackAndIteratorTesting/blob/main/StackTesting/GenericStackClassVersion/GenericStack.py) class to function. This class was originally written in java and was translated to python by ChatGPT.
+    - [PythonStackVersion](https://github.com/5115-source/StackAndIteratorTesting/blob/main/StackTesting/PythonStackVersion/) contains the [DisplayPrimeNumbers](https://github.com/5115-source/StackAndIteratorTesting/blob/main/StackTesting/PythonStackVersion/DisplayPrimeNumbers.py) program which uses the built in stack functionality of python.
